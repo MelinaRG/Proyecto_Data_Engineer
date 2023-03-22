@@ -72,9 +72,10 @@ CREATE TABLE IF NOT EXISTS public.program
     date_added date,
     date_released date,
     id_rating integer,
-    duration integer,
     id_gender integer,
     id_platform integer,
+    duration_int integer,
+    duration_type character varying,
     CONSTRAINT program_pkey PRIMARY KEY (id_program)
 );
 
