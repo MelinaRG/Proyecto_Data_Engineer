@@ -24,3 +24,13 @@ El objetivo del proyecto fue procesar y analizar datos de dos plataformas de str
 
 Es importante destacar la relevancia de la ingeniería de datos para poder lograr un analisis profundo de la información y la creación de modelos de machine learning confiables y precisos.
 En este caso, se sugiere la implementación de un modelo de motor de recomendaciones basado en contenidos, aunque se recomienda incorporar información adicional, como el score de puntuaciones de los usuarios, para mejorar la precisión del modelo.
+
+## **Stack tecnológico :paperclip:**
+
+- Python <a href="https://emoji.gg/emoji/9794-python"><img src="https://cdn3.emoji.gg/emojis/9794-python.png" width="20px" height="20px" alt="python"></a> 
+
+- Pandas <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" width="20px" height="20px" />
+
+- SQLAlchemy <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" width="30px" height="30px" /> 
+
+- PostgreSQL <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="20px" height="20px" />
