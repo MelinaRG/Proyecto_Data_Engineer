@@ -3,6 +3,35 @@
 BEGIN;
 
 
+CREATE TABLE IF NOT EXISTS public.actor
+(
+    id_actor integer NOT NULL,
+    nombre character varying COLLATE pg_catalog."default",
+    CONSTRAINT actor_pkey PRIMARY KEY (id_actor)
+);
+
+CREATE TABLE IF NOT EXISTS public.cast_
+(
+    id_cast integer NOT NULL,
+    "cast" character varying COLLATE pg_catalog."default",
+    CONSTRAINT cast__pkey PRIMARY KEY (id_cast)
+);
+
+CREATE TABLE IF NOT EXISTS public.cast_actor
+(
+    id_cast_actor integer NOT NULL,
+    id_cast integer,
+    id_actor integer,
+    CONSTRAINT cast_actor_pkey PRIMARY KEY (id_cast_actor)
+);
+
+CREATE TABLE IF NOT EXISTS public.category
+(
+    id_category integer NOT NULL,
+    type character varying COLLATE pg_catalog."default",
+    CONSTRAINT type_pkey PRIMARY KEY (id_category)
+);
+
 CREATE TABLE IF NOT EXISTS public.country
 (
     id_country integer NOT NULL,
@@ -34,7 +63,7 @@ CREATE TABLE IF NOT EXISTS public.platform
 CREATE TABLE IF NOT EXISTS public.program
 (
     id_program integer NOT NULL,
-    id_show character varying,
+    id_show character varying COLLATE pg_catalog."default",
     id_category integer,
     title character varying COLLATE pg_catalog."default",
     id_director integer,
@@ -56,34 +85,44 @@ CREATE TABLE IF NOT EXISTS public.rating
     CONSTRAINT rating_pkey PRIMARY KEY (id_rating)
 );
 
-CREATE TABLE IF NOT EXISTS public.category
+CREATE TABLE IF NOT EXISTS public.director_name_dir
 (
-    id_category integer NOT NULL,
-    type character varying COLLATE pg_catalog."default",
-    CONSTRAINT type_pkey PRIMARY KEY (id_category)
+    id_director_name_dir integer,
+    id_director integer,
+    id_name_dir integer,
+    PRIMARY KEY (id_director_name_dir)
 );
 
-CREATE TABLE IF NOT EXISTS public.actor
+CREATE TABLE IF NOT EXISTS public.name_dir
 (
-    id_actor integer,
-    nombre character varying,
-    PRIMARY KEY (id_actor)
+    id_name_dir integer,
+    "Nombre" character varying[],
+    PRIMARY KEY (id_name_dir)
 );
 
-CREATE TABLE IF NOT EXISTS public.cast_
-(
-    id_cast integer,
-    "cast" character varying,
-    PRIMARY KEY (id_cast)
-);
+ALTER TABLE IF EXISTS public.cast_actor
+    ADD CONSTRAINT cast_actor_id_actor_fkey FOREIGN KEY (id_actor)
+    REFERENCES public.actor (id_actor) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
 
-CREATE TABLE IF NOT EXISTS public.cast_actor
-(
-    id_cast_actor integer,
-    id_cast integer,
-    id_actor integer,
-    PRIMARY KEY (id_cast_actor)
-);
+
+ALTER TABLE IF EXISTS public.cast_actor
+    ADD CONSTRAINT cast_actor_id_cast_fkey FOREIGN KEY (id_cast)
+    REFERENCES public.cast_ (id_cast) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS public.program
+    ADD CONSTRAINT program_id_cast_fkey FOREIGN KEY (id_cast)
+    REFERENCES public.cast_ (id_cast) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
 
 ALTER TABLE IF EXISTS public.program
     ADD CONSTRAINT program_id_country_fkey FOREIGN KEY (id_country)
@@ -133,25 +172,17 @@ ALTER TABLE IF EXISTS public.program
     NOT VALID;
 
 
-ALTER TABLE IF EXISTS public.program
-    ADD FOREIGN KEY (id_cast)
-    REFERENCES public.cast_ (id_cast) MATCH SIMPLE
+ALTER TABLE IF EXISTS public.director_name_dir
+    ADD FOREIGN KEY (id_director)
+    REFERENCES public.director (id_director) MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
 
 
-ALTER TABLE IF EXISTS public.cast_actor
-    ADD FOREIGN KEY (id_cast)
-    REFERENCES public.cast_ (id_cast) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS public.cast_actor
-    ADD FOREIGN KEY (id_actor)
-    REFERENCES public.actor (id_actor) MATCH SIMPLE
+ALTER TABLE IF EXISTS public.director_name_dir
+    ADD FOREIGN KEY (id_name_dir)
+    REFERENCES public.name_dir (id_name_dir) MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
