@@ -23,7 +23,10 @@ El objetivo del proyecto fue procesar y analizar datos de dos plataformas de str
 ## **Conclusión :paperclip:**
 
 Es importante destacar la relevancia de la ingeniería de datos para poder lograr un analisis profundo de la información y la creación de modelos de machine learning confiables y precisos.
-En este caso, se sugiere la implementación de un modelo de motor de recomendaciones basado en contenidos, aunque se recomienda incorporar información adicional, como el score de puntuaciones de los usuarios, para mejorar la precisión del modelo.
+
+Para mejorar la experiencia del usuario, en este caso, un motor de recomendación podría ser una excelente opción. Podría utilizarse el motor por filtrado colaborativo o el de filtrado basado en contenido. El filtrado colaborativo utiliza el comportamiento de otros usuarios con gustos similares para recomendar películas, mientras que el filtrado basado en contenido se enfoca en las características de las películas para encontrar títulos similares a los que el usuario ha visto anteriormente.
+
+Además, se recomienda incorporar información adicional, como el score de puntuaciones de los usuarios, para mejorar la precisión del modelo.
 
 ## **Stack tecnológico :paperclip:**
 
